@@ -17,14 +17,14 @@ socket.on('connect', function(){
                         navigator.mozGetUserMedia ||
                         navigator.msGetUserMedia);
 
-    var getUserMedia = userMedia.bind(navigator);    
+    var getUserMedia = userMedia.bind(navigator);  
     getUserMedia({audio: true, video: true}, start, function() {alert('Error');});
 });
 
 
 function start(stream) {
     myStream = stream;
-    document.querySelector("#main-video").src = URL.createObjectURL(stream);
+    document.querySelector("#main-video").srcObject = stream;
 
     socket.emit('room', {room : mainRoom, user : mainUsername});
 
